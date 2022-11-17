@@ -1,0 +1,18 @@
+$doctype 5
+<html>
+  <body>
+    <h2>All task lists
+
+    <h3>Add task list
+    <form method="post" action=@{AddTaskListR} enctype=#{enctype} autocomplete="off">
+      ^{widget}
+      <button>Add task list
+
+    $if null taskLists
+      <p>No task lists
+    $else
+      <ul>
+        $forall (taskListId, taskListName) <- taskLists
+          <form method="post" action=@{DeleteTaskListR taskListId}>
+            <li><a href=@{TaskListR taskListId}>#{taskListName}
+            <button>Delete list

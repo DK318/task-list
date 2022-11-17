@@ -1,0 +1,21 @@
+<html>
+  <body>
+    $maybe tasks <- tasksMb
+      <h2>All tasks
+
+      <h3>Add task
+      <form method="post" action=@{AddTaskR listId} enctype=#{enctype} autocomplete="off">
+        ^{widget}
+        <button>Add task
+
+      $if null tasks
+        <p>No tasks
+      $else
+        <ul>
+          $forall (taskId, (taskName, taskStatus)) <- toList tasks
+            <li>
+              <p>#{taskName}: #{taskStatus}
+              <a href=@{ChangeMarkR listId taskId}>Change
+    $nothing
+      <h2>Task list does not exist
+    <a href=@{IndexR}>Go home
